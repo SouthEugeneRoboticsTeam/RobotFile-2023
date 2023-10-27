@@ -1,6 +1,6 @@
 package org.sert2521.robotfile2023
 
-class Constants {
+object Constants {
     val clawMotorID = -1
 }
 
