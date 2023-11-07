@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 
 import org.sert2521.robotfile2023.subsystems.Claw
 
+
 internal class RobotBaseTest
 {
     // To learn more about how to write unit tests, see the
@@ -66,13 +67,23 @@ internal class RobotBaseTest
     @Test
     fun `claw setSpeed rejects negative values`()
     {
-        assertEquals(0.0, Claw.getMotorSpeed())
+        // GIVEN we know the starting value for the claw
+        val startingValue = Claw.getMotorSpeed()
+
+        // WHEN we set a negative number
+        Claw.setMotor(-1.0)
+
+        //THEN the setpoint will remain at the previous value
+        assertEquals( startingValue, Claw.getMotorSpeed())
     }
 
     @Test
     fun `claw setSpeed rejects speeds greater than safe`()
     {
-        assertEquals(0.0, Claw.getMotorSpeed())
+        val startSpeed = Claw.getMotorSpeed()
+        Claw.setMotor(9.9)
+        assertTrue(startSpeed == Claw.getMotorSpeed())
+
     }
 }
 

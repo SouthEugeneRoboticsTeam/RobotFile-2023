@@ -33,10 +33,12 @@ object Claw : SubsystemBase() {
         val presentSpeed : Double = motor.get()
         val speedDifference : Double =  speed - presentSpeed
 
-        desiredSpeed = speed
+        if (speed >= 0.00) {
+            desiredSpeed = speed
+        }
 
         if ( speedDifference < maxInstantChange ) {
-            motor.set(speed)
+            motor.set(desiredSpeed)
         } else {
             speedIncrementPerCycle = speedDifference / timeToRampUp
         }
